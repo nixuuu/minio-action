@@ -122,11 +122,18 @@ const Semaphore = require('./semafor')
       const files = glob
         .globSync(src, {
           nodir: true,
+          dotRelative: false,
+          absolute: false,
           platform: os.platform(),
           matchBase: false,
         })
         .map((path) => {
           path = path.replace(/\\/g, '/')
+          if (path.startsWith('./')) {
+            path = path.substring(2)
+          } else if (path.startsWith('../')) {
+            path = path.substring(3)
+          }
           if (path.startsWith('/')) {
             path = path.substring(1)
           }
