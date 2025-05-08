@@ -127,6 +127,7 @@ const Semaphore = require('./semafor')
           matchBase: false,
         })
         .map((path) => {
+          path = path.replace(/\\/g, '/')
           return {
             target: prefix ? path.replace(prefix, '') : path,
             file: path,
