@@ -1,0 +1,35 @@
+name: 'Upload to S3'
+description: 'Upload files to S3 bucket'
+inputs:
+  host:
+    description: 'S3 Host: eg. s3.amazonaws.com'
+    required: false
+    default: 's3.amazonaws.com'
+  port:
+    description: 'S3 Port: eg. 443'
+    required: false
+  bucket:
+    description: 'S3 Bucket: eg. my-bucket'
+    required: true
+  accessKey:
+    description: 'S3 Access Key: eg. AKIA...'
+    required: true
+  secretKey:
+    description: 'S3 Secret Key: eg. abcdef...'
+    required: true
+  region:
+    description: 'S3 Region: eg. us-east-1'
+    required: true
+  ssl:
+    description: 'Use SSL: true or false'
+    required: false
+  paths:
+    description: 'File path, glob or directory to upload, ex. `./target/* => /public/'
+    required: true
+  clearDirs:
+    description: 'Directories to clear on S3 before upload, ex. `/public`'
+    required: false
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
