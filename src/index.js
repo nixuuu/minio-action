@@ -128,6 +128,14 @@ const Semaphore = require('./semafor')
         })
         .map((path) => {
           path = path.replace(/\\/g, '/')
+          if (path.startsWith('./')) {
+            path = path.substring(2)
+          } else if (path.startsWith('../')) {
+            path = path.substring(3)
+          }
+          if (path.startsWith('/')) {
+            path = path.substring(1)
+          }
           return {
             target: prefix ? path.replace(prefix, '') : path,
             file: path,
